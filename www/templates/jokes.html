@@ -1,0 +1,41 @@
+<ion-view view-title="Jokes">
+  <ion-content>
+  	<ion-refresher
+	    pulling-text="Pull to refresh..."
+	    on-refresh="doRefresh()">
+	</ion-refresher>
+    <div class="list list-inset">
+      <label class="item item-input">
+	    <input type="text" placeholder="Add new joke.." ng-model="joke">
+	  </label>
+	  <button class="button button-block button-positive" ng-click="addJoke(joke)">
+	  	Add Joke
+	  </button>
+    </div>
+	
+	<ion-list can-swipe="listCanSwipe">
+	  	<ion-item ng-repeat="joke in jokes" class="item item-text-wrap">
+
+	    <!-- jokes.updateJoke(joke) -->
+	    <h2>{{joke.joke}}</h2>		
+
+	    <ion-option-button class="button-positive"
+	                       ng-click="updatePopup(joke, 'Update')">
+	      <!-- Edit -->
+	      <i class="icon ion-edit"></i>
+	    </ion-option-button>
+
+	    <ion-option-button class="button-assertive"
+	                       ng-click="deleteJoke($index, joke.joke_id)">	      
+	      <!-- Delete -->
+	      <i class="icon ion-trash-a"></i>
+	    </ion-option-button>
+
+	  	</ion-item>
+	</ion-list>
+
+	<ion-infinite-scroll  ng-if="!noMoreItemsAvailable"
+  on-infinite="loadMore(5)" distance="10%"></ion-infinite-scroll>
+
+  </ion-content>
+</ion-view>

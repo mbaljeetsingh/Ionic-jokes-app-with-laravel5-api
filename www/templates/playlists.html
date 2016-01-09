@@ -1,0 +1,28 @@
+<ion-view view-title="Playlists">
+  <ion-content>
+  <button ng-click="loadMore()">LoadMore</button>
+    <ion-list>
+      <!-- <ion-item class="item item-text-wrap" ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}"> -->
+      <ion-item class="item item-text-wrap" ng-repeat="playlist in playlists track by $index" ng-click="openDetails($index)">
+        {{playlist.title}} 
+        <ion-option-button class="button-positive"
+	                       ng-click="#">
+	      <!-- Edit -->
+	      <i class="icon ion-share"></i>
+	    </ion-option-button>
+        <!-- <div ng-bind-html="playlist.description"></div>        -->
+      </ion-item>
+    </ion-list>
+  </ion-content>
+  <script id="templates/modal.html" type="text/ng-template">
+      <ion-modal-view >
+        <ion-header-bar class="bar bar-header bar-positive" ng-click="closeModal()">
+          <h1 class="title">{{currentPlaylist.title}}</h1>
+          <button class="button button-clear button-light">Close</button>
+        </ion-header-bar>
+        <ion-content class="padding img-class">
+          <div ng-bind-html="currentPlaylist.description"></div>
+        </ion-content>
+      </ion-modal-view>
+    </script>
+</ion-view>
